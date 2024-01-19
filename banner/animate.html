@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #bg {
+            text-align: center;
+            
+        }
+
+        #logo img{
+            width: 500px;
+        }      
+
+        #girl {
+            position: absolute;
+            top: 15vh;
+            left:75vh;
+            opacity: 0;
+        }
+
+        #headline1 {
+            position: absolute;
+            top: -250px;
+            left: -1000px;
+        }
+
+        #headline2 {
+            position: absolute;
+            top: -300px;
+            left: 1500px;
+        }
+
+        #subheadline {
+            position: absolute;
+            top: -70px;
+            left: 0;    
+            opacity: 0;
+        }
+
+        #learn-more {
+            position: absolute;
+            bottom: 100px;
+            left: 600px;
+            cursor: pointer;
+            opacity: 0;
+        }
+
+        #logo {
+            position: absolute;
+            bottom: 300px;
+            right: 1500px;   
+        }
+
+        #replay {
+            bottom: 40px;
+            right: 42%;
+            position: absolute;
+            cursor: pointer;
+            opacity: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="banner">
+        <div id="bg" > <img src="background.png" /></div>
+        <div id="girl"> <img src="https://images.unsplash.com/photo-1681164316572-d852db69314c?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDExfHxnaXJsJTIwd2l0aCUyMGxhcHRvcHxlbnwwfHwwfHx8MA%3D%3D" alt="" /></div>
+        <div id="headline1"> <img src="headline1.png" alt="" /></div>
+        <div id="headline2"> <img src="headline2.png" alt="" /></div>
+        <div id="subheadline"> <img src="subheadline.png" alt="" /></div>
+        <div id="learn-more"> <img src="learnmore.png" alt="" /></div>
+        <div id="logo"> <img src="logo.png" alt="" /></div>
+        <div id="replay"> <img src="replay.png" alt="" /></div>
+    </div>
+
+    <script>
+        
+        // Declare the banner elements as variables
+        var banner = document.getElementById("banner");
+        var bg = document.getElementById("bg");
+        var girl = document.getElementById("girl");
+        var headline1 = document.getElementById("headline1");
+        var headline2 = document.getElementById("headline2");
+        var subheadline = document.getElementById("subheadline");
+        var learnMore = document.getElementById("learn-more");
+        var logo = document.getElementById("logo");
+        var replay = document.getElementById("replay");
+
+        // Declare the animation duration and delay variables
+        var duration = 0.5; // in seconds
+        var delay = 0.2; // in seconds
+
+        // Declare the animation function to create and execute the animation
+        function animation() {
+                // Fade in the girl
+                girl.style.transition = "opacity " + duration + "s";
+                girl.style.opacity = 1;
+
+                // Slide in the headline1 from the left
+                headline1.style.transition = "left " + duration + "s ease-out " + delay + "s";
+                headline1.style.left = 0;
+
+                // Fade out the girl and slide out the headline1 after 3 seconds
+                setTimeout(function () {
+                girl.style.transition = "opacity " + duration + "s";
+                girl.style.opacity = 0;
+                //headline1.style.transition = "opacity " + duration + "s";
+                //headline1.style.opacity = 0;
+                headline1.style.transition = "left " + duration + "s ease-in";
+                headline1.style.left = -1000 + "px";
+            }, 3000);
+
+                // Slide in the headline2 from the right after 4 seconds
+                setTimeout(function () {
+                headline2.style.transition = "left " + duration + "s ease-out";
+                headline2.style.left = 0;
+            }, 4000);
+
+                // Fade in the subheadline after 5 seconds
+                setTimeout(function () {
+                subheadline.style.transition = "opacity " + duration + "s";
+                subheadline.style.opacity = 1;
+            }, 5000);
+
+                // Fade in the learn more button after 6 seconds
+                setTimeout(function () {
+                learnMore.style.transition = "opacity " + duration + "s";
+                learnMore.style.opacity = 1;
+            }, 6000);
+
+                // Slide in the logo from the right after 7 seconds
+                setTimeout(function () {
+                logo.style.transition = "right " + duration + "s ease-out";
+                logo.style.right = 0;
+            }, 7000);
+
+                // Fade in the replay button after 8 seconds
+                setTimeout(function () {
+                replay.style.transition = "opacity " + duration + "s";
+                replay.style.opacity = 1;
+            }, 8000);
+        }
+
+        window.onload = animation;
+
+        // Declare the repeat function to reset and restart the animation
+        function repeat() {
+            // Reset the banner elements to their initial states
+            girl.style.opacity = 0;
+            headline1.style.left = -1000 + "px";
+            headline2.style.left = 1500 + "px";
+            subheadline.style.opacity = 0;
+            learnMore.style.opacity = 0;
+            logo.style.right = 1500 + "px";
+            replay.style.opacity = 0;
+
+             // Restart the animation after a short delay
+             setTimeout(animation, delay * 1000);
+        }
+
+        // Add an event listener to the replay button to call the replay function when clicked
+        replay.addEventListener("click", repeat);
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Node Render Html</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+
+    <script src="custom.js"></script>
+    <script>
+        //checkIfUserIsLogin();
+       
+    </script>
+
+<style>
+    a {
+    text-decoration: none;
+    color: white;
+    }
+</style>
+    
+
+</head>
+<body>
+    <p>Welcome to my MP2</p>
+    <p id="checkServer"></p>
+    
+    
+    
+    <table class="table table-dark table-striped" id="myTable">
+        <tr class="table-primary">
+          
+            <th>
+                Full Name
+            </th>
+            <th>
+                Email address
+            </th>
+            <th>
+                Message
+            </th>
+           </tr>
+    </table>
+
+    <script>
+
+      async function callAllPRofiles() {
+
+        const result = await fetch('http://localhost:5000/all-profiles'); //requesting
+        const data = await result.json();
+        
+        const myTable = document.getElementById('myTable');
+        if (data) {
+            for (d of data) {
+            const newRow = myTable.insertRow(myTable.rows.length);
+            const newCell = newRow.insertCell(0);
+            const newCel2 = newRow.insertCell(1);
+            const newCel3 = newRow.insertCell(2);
+            const newCel4 = newRow.insertCell(3);
+            
+            
+            newCell.innerHTML = d.fullName;
+            newCel2.innerHTML = d.Email;
+            newCel3.innerHTML = d.message;
+            
+       
+            }; 
+        } 
+      }
+      
+      callAllPRofiles();
+
+    </script>
+    
+</body>
+</html>
